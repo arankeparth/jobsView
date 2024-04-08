@@ -1,0 +1,63 @@
+.task-card {
+    height: fit-content;
+    display: flex; /* Add this line */
+    justify-content: space-between;
+    align-items: center;
+    width: 99%;
+    flex-direction: row;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 2px 0px;
+    background-color: #9844b1;
+    color: white;
+}
+
+#date {
+    width: 6rem;
+}
+
+#assignee {
+    position: relative;
+    width: 6rem;
+}
+
+#assignee::before {
+    content: attr(data-initials);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: #2f2f2f;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+p {
+    width: 6rem;
+    position: relative;
+}
+
+#prio:hover::before, #date:hover::before {
+    position: absolute;
+    content: attr(fieldname);
+    top: -20px;
+    left: 0;
+    background-color: #000;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+
+a {
+    color: white;
+    width: fit-content;
+    margin: 0px 10px;
+}
