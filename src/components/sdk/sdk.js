@@ -179,6 +179,7 @@ class HttpSDK {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(credentials),
+                mode: "cors",
             });
             if (response.status === 401) {
                 window.location.href = '/login'; // Redirect to login page
@@ -405,6 +406,7 @@ class HttpSDK {
                     'Content-Type': 'application/json',
                     'Authorization': localStorage.getItem('token'),
                 },
+                mode: "cors"
             });
             const customer = await response.json();
             return customer;
