@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SDK } from '../sdk/sdk';
 import { Editor } from 'primereact/editor';
+import LoadingIcons from 'react-loading-icons';
 
 const TicketComponent = ({ ticketInfo, setCurrentTask }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -118,19 +119,28 @@ const TicketComponent = ({ ticketInfo, setCurrentTask }) => {
       ) : (
         <></>
       )}
-      <div className='info-box'>
-        <div className="description-box" dangerouslySetInnerHTML={{ __html: visibleTask.description }}>
+      
+      {ticketInfo.summary === undefined ? (
+        <div className='loading'>
+           <div className='loading-box'><LoadingIcons.ThreeDots stroke="gray" style={{scale: 1}} speed={2}/></div>
         </div>
-        <div className="details-box">
-          <p className="details"><strong>Date Created:</strong> {visibleTask.dateCreated}</p>
-          <p className="details"><strong>Due Date:</strong> {visibleTask.dueDate}</p>
-          <p className="details"><strong>Priority:</strong> {visibleTask.priority}</p>
-          <p className="details"><strong>Assignee:</strong> {visibleTask.assignee}</p>
-          <p className="status"><strong>Status:</strong> {visibleTask.status}</p>
+      ) : (
+        <>
+        <div className='info-box'>
+          <div className="description-box" dangerouslySetInnerHTML={{ __html: visibleTask.description }}>
+          </div>
+          <div className="details-box">
+            <p className="details"><strong>Date Created:</strong> {visibleTask.dateCreated}</p>
+            <p className="details"><strong>Due Date:</strong> {visibleTask.dueDate}</p>
+            <p className="details"><strong>Priority:</strong> {visibleTask.priority}</p>
+            <p className="details"><strong>Assignee:</strong> {visibleTask.assignee}</p>
+            <p className="status"><strong>Status:</strong> {visibleTask.status}</p>
+          </div>
         </div>
-      </div>
-      <button className="edit-button" onClick={handleEditClick}>Edit</button>
-      <button className="edit-button" id='commentsButt' onClick={showTicket}>Show comments</button>
+        <button className="edit-button" onClick={handleEditClick}>Edit</button>
+        <button className="edit-button" id='commentsButt' onClick={showTicket}>Show comments</button>
+        </>
+      )}
     </div>
   );
 };

@@ -6,12 +6,14 @@ import './TicketPage.css'
 import SingleComment from '../comments/singleComment';
 import { useParams } from 'react-router-dom';
 import { SDK } from '../sdk/sdk';
+import LoadingIcons from 'react-loading-icons'
 const TicketPage = () => {
   const ticketId = useParams().ticketId;
-  
+  const [addingComment, setAddingComment] = useState(false);
   const [ticket, setTicket] = useState({
     "comments":[]
   });
+  const [comments, setComments] = useState([]); // [comments, setComments
   const [commentInput, setCommentInput] = useState('');
 
   const handleCommentChange = (event) => {
@@ -29,6 +31,7 @@ const TicketPage = () => {
     } catch (error) {
       console.error('Error fetching ticket data:', error);
     }
+    setAddingComment(false);
   };
 
   useEffect(() => {
@@ -37,6 +40,7 @@ const TicketPage = () => {
 
   const handleCommentSubmit = async (event) => {
     try {
+      setAddingComment(true);
       event.preventDefault();
       const customer = await SDK.fetchCustomer(localStorage.getItem('customerid'));
       console.log(ticketId);
@@ -50,6 +54,7 @@ const TicketPage = () => {
       await SDK.createComment(newComment);
       setCommentInput('');
       fetchTicketData();
+      
     } catch (error) {
       console.error('Error submitting comment:', error);
     }
@@ -69,17 +74,24 @@ const TicketPage = () => {
         <div className='comments-box'>
           <h2>Comments</h2>
 
-          <form onSubmit={handleCommentSubmit}>
+          <form onSubmit={handleCommentSubmit} class="comment-form">
             <input id ="coment" type="text" value={commentInput} onChange={handleCommentChange} placeHolder='Enter comment'/>
-            <button type="submit">Add comment</button>
+           
+            {addingComment ? (
+               <div><LoadingIcons.Oval stroke="gray" style={{scale: '0.8'}} speed={2}/></div>
+            ) : (
+              <button type="submit">Add comment</button>
+            )}
           </form>
           <ul className='comments-container'>
-            {ticket && ticket.comments.length > 0 ? (
+            {ticket && ticket.comments && ticket.comments.length > 0 ? (
               ticket.comments.map(comment => (
                 <SingleComment key={comment.id} comment={comment}></SingleComment>
               ))
             ) : (
-              <></>
+              <div className='loading'>
+           <div className='loading-box'><LoadingIcons.ThreeDots stroke="gray" style={{scale: 1}} speed={2}/></div>
+        </div>
             )}
           </ul>
 

@@ -3,15 +3,16 @@ import { Link, useNavigate } from 'react-router-dom'; // Assuming you're using R
 import { SDK } from '../sdk/sdk';
 import './auth.css';
 import { useAuth } from './AuthContext'
-
+import LoadingIcons from 'react-loading-icons'
+import Error from './errorMessgae';
 
 const uuid = require('uuid');
-function LoginPage() {
+function LoginPage() {  
         const navigate = useNavigate();
         const { login } = useAuth();
         const [username, setUsername] = useState('');
         const [pass, setPass] = useState('');
-
+        const [err, setErr] = useState();
         const onUpdateEmail = (e) => {
                 setUsername(e.target.value);
         };
@@ -25,6 +26,8 @@ function LoginPage() {
                 const err = await login(username, pass);
                 if (!err) {
                         navigate("/");
+                } else {
+                        setErr(err);
                 }
         };
 
@@ -39,6 +42,7 @@ function LoginPage() {
                         <div className="background">
                                 <form className="auth-form">
                                         <h2 id='welcomeMat'>spice</h2>
+                                        <Error error={err} />
                                         <br></br>
                                         <input type="text" onChange={onUpdateEmail} placeholder="Email or Phone" id="username" />
                                         <input type="password" onChange={onUpdatePass} placeholder="Password" id="password" />
@@ -67,7 +71,7 @@ function RegisterPage() {
                 gender: '',
                 password: ''
         });
-
+        const [err, setErr] = useState();
         const handleChange = (e) => {
                 const { name, value } = e.target;
                 if (name === "age") {
@@ -126,11 +130,11 @@ function RegisterPage() {
                 e.preventDefault();
                 
                 if (!validateForm()) {
-                        alert("Please fill in all fields");
+                        setErr("Please fill in all fields");
                         return;
                 }
                 if (registerData.password !== registerData.confirmPassword) {
-                        alert("Passwords do not match");
+                        setErr("Passwords do not match");
                         return;
                 }
                 const customerId = uuid.v4();
@@ -140,6 +144,7 @@ function RegisterPage() {
                 const err = await SDK.createUser(registerData);
                 if (err) {
                         console.error('Error creating user:', err);
+                        setErr('Error creating user. please try with another email');
                         return;
                 }
                 navigate("/login");
@@ -150,6 +155,7 @@ function RegisterPage() {
         return (
                 <div class="main-auth-box">
                         <div className="background">
+                                <Error error={err} />
                                 <form onSubmit={handleSubmit} className="auth-form">
 
                                         <input

@@ -191,7 +191,6 @@ class HttpSDK {
             const resp = await response.json();
             return [resp, null]
         } catch (error) {
-            alert("failed to log in")
             console.error('Error logging in:', error);
             return [null, error];
         }

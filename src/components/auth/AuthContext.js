@@ -9,8 +9,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (username, pass) => {
     try {
         if (!username || !pass) {
-          alert("Please enter a username and password");
-          return;
+          return "Please enter a username and password";
         }
         const [resp, err] = await SDK.login(username, pass);
         if (err === null && resp.is_loggedin) {
@@ -19,7 +18,7 @@ export const AuthProvider = ({ children }) => {
             localStorage.setItem('customerid', resp.customerid);
             setAuthenticated(true);
         } else {
-          alert("Invalid credentials")
+          return "Invalid username or password"
         }
 
         return err

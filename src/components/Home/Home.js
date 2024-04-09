@@ -4,11 +4,12 @@ import NavBar from '../NavBar/NavBar';
 import TaskArr from '../TaskArr/TaskArr';
 import TaskInfo from '../TaskInfo/TaskInfo';
 import { GetTasks } from './utils';
+import LoadingIcons from 'react-loading-icons'
 
 const Home = () => {
     const [currTaskIndex, setCurrTask] = useState(0); // [task, setTask
     const [{ openTasks, inProgressTasks, completedTasks }, setTaskSummary] = useState({ openTasks: 0, inProgressTasks: 0, completedTasks: 0 });
-    const [tasks, setTasks] = useState([]);
+    const [tasks, setTasks] = useState();
 
     const handleTaskSelection = (taskId) => {
         setCurrTask(taskId);
@@ -44,13 +45,15 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            {tasks.length > 0 ? (
+            {!tasks ? (
+                <div class="loading"><div className='loading-box'><LoadingIcons.Oval stroke="gray" style={{scale: '2'}} speed={2}/></div></div>
+            ) : tasks.length > 0 ? (
                 <div className='tasks'>
                     <TaskArr tasks={tasks} setTasks={handleTaskSelection} />
                     <TaskInfo ticketInfo={tasks[currTaskIndex]} />
                 </div>
             ) : (
-                <p class='no-tasks'>No tasks created</p>
+                <p className='no-tasks'>No tasks created</p>
             )}
 
         </div>
