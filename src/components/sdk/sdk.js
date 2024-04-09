@@ -4,7 +4,7 @@ class HttpSDK {
     // Method to fetch tasks
     async fetchTasks(filter) {
         try {
-            const response = await fetch(`${baseURL}:5050/task/get`, {
+            const response = await fetch(`${baseURL}/task/get`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ class HttpSDK {
 
     async createTask(taskData) {
         try {
-            const response = await fetch(`${baseURL}:5050/task/create`, {
+            const response = await fetch(`${baseURL}/task/create`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -77,7 +77,7 @@ class HttpSDK {
 
     async updateTask(updatedTaskData) {
         try {
-            const response = await fetch(`${baseURL}:5050/task/update`, {
+            const response = await fetch(`${baseURL}/task/update`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -98,7 +98,7 @@ class HttpSDK {
 
     async createComment(commentData) {
         try {
-            const response = await fetch(`${baseURL}:5050/task/comment/create`, {
+            const response = await fetch(`${baseURL}/task/comment/create`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -120,7 +120,7 @@ class HttpSDK {
 
     async fetchComments(taskId) {
         try {
-            const response = await fetch(`${baseURL}:5050/task/comment/get/${taskId}`, {
+            const response = await fetch(`${baseURL}/task/comment/get/${taskId}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -144,7 +144,7 @@ class HttpSDK {
 
     async verifyJWT(token, publicKey) {
         try {
-            const response = await fetch(`${baseURL}:8080/authapi/v1/verifyjwt`, {
+            const response = await fetch(`${baseURL}/authapi/v1/verifyjwt`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -173,7 +173,7 @@ class HttpSDK {
             'password': password,
         }
         try {
-            const response = await fetch(`${baseURL}:8080/authapi/v1/login`, {
+            const response = await fetch(`${baseURL}/authapi/v1/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -198,7 +198,7 @@ class HttpSDK {
 
     async createUser(userData) {
         try {
-            const response = await fetch(`${baseURL}:5000/customerApi/v1/create`, {
+            const response = await fetch(`${baseURL}/customerApi/v1/create`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -219,7 +219,7 @@ class HttpSDK {
 
     async fetchCustomer(customerId) {
         try {
-            const response = await fetch(`${baseURL}:5000/customerApi/v1/getcustomerinfo/${customerId}`, {
+            const response = await fetch(`${baseURL}/customerApi/v1/getcustomerinfo/${customerId}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -239,7 +239,7 @@ class HttpSDK {
     }
     async fetchTasks(filter) {
         try {
-              const response = await fetch(`${baseURL}:5050/task/get`, {
+              const response = await fetch(`${baseURL}/task/get`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -262,7 +262,7 @@ class HttpSDK {
     // Method to create a task
     async createTask(taskData) {
         try {
-            const response = await fetch(`${baseURL}:5050/task/create`, {
+            const response = await fetch(`${baseURL}/task/create`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -281,7 +281,7 @@ class HttpSDK {
     // Method to delete a task
     async deleteTask(taskId) {
         try {
-            const response = await fetch(`${baseURL}/tasks/${taskId}`, {
+            const response = await fetch(`${baseURL}/${taskId}`, {
                 method: 'DELETE',
             });
             if (response.ok) {
@@ -298,7 +298,7 @@ class HttpSDK {
     // Method to update a task
     async updateTask(updatedTaskData) {
         try {
-            const response = await fetch(`${baseURL}:5050/task/update`, {
+            const response = await fetch(`${baseURL}/task/update`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',   
@@ -316,7 +316,7 @@ class HttpSDK {
     // Method to create a comment
     async createComment(commentData) {
         try {
-            const response = await fetch(`${baseURL}:5050/task/comment/create`, {
+            const response = await fetch(`${baseURL}/task/comment/create`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -335,7 +335,7 @@ class HttpSDK {
     // Method to fetch comments
     async fetchComments(taskId) {
         try {
-            const response = await fetch(`${baseURL}:5050/task/comment/get/${taskId}`, {
+            const response = await fetch(`${baseURL}/task/comment/get/${taskId}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -357,7 +357,7 @@ class HttpSDK {
     async verifyJWT(token, publicKey) {
         
         try {
-            const response = await fetch(`${baseURL}:8080/authapi/v1/verifyjwt`, {
+            const response = await fetch(`${baseURL}/authapi/v1/verifyjwt`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -381,7 +381,7 @@ class HttpSDK {
     // Method to create a user
     async createUser(userData) {
         try {
-            const response = await fetch(`${baseURL}:5000/customerApi/v1/create`, {
+            const response = await fetch(`${baseURL}/customerApi/v1/create`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -399,7 +399,7 @@ class HttpSDK {
     // Method to fetch customer
     async fetchCustomer(customerId) {
         try {
-            const response = await fetch(`${baseURL}:5000/customerApi/v1/getcustomerinfo/${customerId}`, {
+            const response = await fetch(`${baseURL}/customerApi/v1/getcustomerinfo/${customerId}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
