@@ -11,8 +11,7 @@ const TicketPage = () => {
   const ticketId = useParams().ticketId;
   const [addingComment, setAddingComment] = useState(false);
   const [ticket, setTicket] = useState({
-    "comments":[]
-  });
+});
   const [comments, setComments] = useState([]); // [comments, setComments
   const [commentInput, setCommentInput] = useState('');
 
@@ -84,7 +83,7 @@ const TicketPage = () => {
             )}
           </form>
           <ul className='comments-container'>
-            {ticket && ticket.comments && ticket.comments.length > 0 ? (
+            {ticket && ticket.comments ? (
               ticket.comments.map(comment => (
                 <SingleComment key={comment.id} comment={comment}></SingleComment>
               ))

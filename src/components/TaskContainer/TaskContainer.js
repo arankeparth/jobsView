@@ -28,7 +28,9 @@ const TaskContainer = ({task, index, setCurrTask}) => {
 
     return (
             <div className="task-card">
-                <a href='#' onClick={() => setCurrTask(index)}><h3>task{task.id}</h3></a>
+                <a href='' onClick={(e) => {
+                    e.preventDefault();
+                    setCurrTask(index)}}><h3>task{task.id}</h3></a>
                 <p fieldname="priority" id="prio">{task.priority}</p>
                 <p id='date' fieldname="due date">{task.dueDate}</p>
                 <p id='assignee' fieldname="assignee" data-initials={getInitials(task.assignee)}></p>
