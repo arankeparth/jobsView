@@ -1,0 +1,48 @@
+.PathBar {
+    margin: 30px 0;
+    padding: 0 60px;
+    display: flex;
+    flex-direction: row;
+}
+
+.path {
+    width: fit-content;
+}
+
+span {
+    font-weight: 500;
+    font-size: 18px;
+    margin: 0px 10px;
+    color: #06286E;
+    text-align: center;
+}
+
+.path {
+    display: flex;
+    flex-direction: row;
+    color: #696671;
+}
+
+.pathName {
+    font-size: 18px;
+    /* identical to box height */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+}
+
+.last-path {
+    display: flex;
+    flex-direction: row;
+    font-weight: bold;
+    color: #06286E;
+}
+
+.svg-box {
+    display: flex;
+    flex-direction: row;
+    margin: 0 10px;
+    align-items: center;
+}
