@@ -3,11 +3,18 @@
     display: flex;
     flex-direction: row;
     margin-bottom: 20px;
+    @media (max-width: 802px) {
+        gap: 10%;
+    }
+    justify-content: center;
 }
 
 .selector {
     width: fit-content;
     font-size: 20px;
+    @media (max-width: 640px) {
+        font-size: 10px;
+    }
     font-weight: 700;
     line-height: 24.2px;
     text-align: left;

@@ -1,5 +1,8 @@
 .faq {
     padding: 0 60px;
+    @media (max-width: 640px) {
+        padding: 0 30px;
+    }
     margin-top: 90px;
 }
 
@@ -11,6 +14,9 @@
     font-style: normal;
     font-weight: 700;
     font-size: 48px;
+    @media (max-width: 640px) {
+        font-size: 24px;
+    }
     line-height: 58px;
     /* leading-trim and text-edge are draft CSS properties.
 
@@ -35,11 +41,18 @@ Read more: https://drafts.csswg.org/css-inline-3/#leading-trim
     justify-content: space-between;
     align-items: center;
     color: #28262C;
+    @media (max-width: 640px) {
+        font-size: 9px;
+    }
 }
 
 .faq-card {
     width: 70vw;;
     padding: 0 30px; 
+    @media (max-width: 640px) {
+        padding: 0 15px;
+        border: 1px solid #217EEC;
+    }
     border: 2px solid #217EEC;
     border-radius: 20px;
     display: flex;
@@ -72,6 +85,9 @@ svg:hover {
 
 .a-box {
     transition: 0.5s;
+    @media (max-width: 640px) {
+        font-size: 9px;
+    }
 }
 
 .faq-answer {

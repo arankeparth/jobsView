@@ -3,7 +3,23 @@ import SelectBar from '../SelectBar/SelectBar';
 import QuizBox from '../QuizBox/QuizBox';
 import Slider from '../Slider/Slider';
 import './CenterPiece.css';
+import { useState, useEffect } from 'react';
 const CenterPiece = () => {
+  const [shouldRender, setShouldRender] = useState(window.innerWidth > 802);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setShouldRender(window.innerWidth > 802);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+    const windowSize = window.innerWidth;
+    console.log(windowSize)
     return (
         <div className='central'>
             <h1 id='relations'>Relations and Functions (Mathematics)</h1>
@@ -11,7 +27,7 @@ const CenterPiece = () => {
             <QuizBox />
             <Slider />
             <div className='footer'>
-                <div className='left'>
+                {shouldRender ? (<div className='left'>
                     <button class='logo-butt'>
                         <img id='logo2'src='Clip path group.png'></img>
                     </button>
@@ -25,7 +41,8 @@ const CenterPiece = () => {
 <path d="M92.3372 28.7858L100.799 39.6159L91.9216 50.7483H98.6904L104.035 43.6995L109.052 50.7483H116L107.212 39.5558L115.703 28.7858H109.052L104.094 35.6525L99.1364 28.7858H92.3372Z" fill="#06286E"/>
 </svg>
 </div>
-                </div>
+                </div>):(<></>)}
+
                 <div className='right'>
                 <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M25.0001 -0.00019455C11.2001 -0.00019455 9.15527e-05 11.1998 9.15527e-05 24.9998C9.15527e-05 38.7998 11.2001 49.9998 25.0001 49.9998C38.8001 49.9998 50.0001 38.7998 50.0001 24.9998C50.0001 11.1998 38.8001 -0.00019455 25.0001 -0.00019455ZM37.5001 27.4998H27.5001V37.4998H22.5001V27.4998H12.5001V22.4998H22.5001V12.4998H27.5001V22.4998H37.5001V27.4998Z" fill="url(#paint0_linear_1_203)"/>
