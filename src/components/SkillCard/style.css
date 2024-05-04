@@ -1,0 +1,9 @@
+.skill-card {
+    height: fit-content;
+    width: fit-content;
+    padding: 0.2rem 0.5rem;
+    background-color: #d9fed3;
+    color:#4943da;
+    font-size: 1rem;
+    border-radius: 2rem;
+}
