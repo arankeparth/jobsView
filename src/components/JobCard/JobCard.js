@@ -56,7 +56,7 @@ const JobCard = ({ jobInfo }) => {
                 </div>
             </div>
             <div className='exp'>
-                <h2>Minimum experience</h2>
+                <h2>Experience</h2>
                 <h3 id='years'>{jobInfo.minExp} years</h3>
             </div>
             <button className='btn' id='apply'>Easy apply</button>
