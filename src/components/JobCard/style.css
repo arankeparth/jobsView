@@ -182,7 +182,7 @@ p {
 
 #about-comp {
     color: black;
-    font-weight: 600;
+    font-weight: 400;
 }
 
 .skills-list {
@@ -224,4 +224,6 @@ p {
     opacity: 0;
     scale: 0;
 }
+
+
 
