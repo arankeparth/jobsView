@@ -8,6 +8,7 @@ export const filterSlice = createSlice({
         'numEmployees': null,
         'company': null,
         'location': null,
+        'workstyle': null,
         'min_experience': null,
         'max_experience': null,
         'min_salary': null,

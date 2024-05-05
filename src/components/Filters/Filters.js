@@ -29,7 +29,14 @@ const Filters = () => {
     const LocFilter = {
         'key': 'location', // This is the key that will be used in the state
         'title': "Location",
-        'options': ['remote', 'delhi ncr', 'banglore', 'mumbai', 'chennai', 'hybrid'],
+        'options': ['delhi ncr', 'banglore', 'mumbai', 'chennai'],
+        'multiple': false
+    }
+
+    const WorkStyle = {
+        'key': 'workstyle', // This is the key that will be used in the state
+        'title': "Working style",
+        'options': ['remote', 'onsite'],
         'multiple': false
     }
 
@@ -57,6 +64,7 @@ const Filters = () => {
            <SingleFilter filter={MinExpFilter}/>
            <SingleFilter filter={CompName}/>
            <SingleFilter filter={LocFilter}/>
+           <SingleFilter filter={WorkStyle}/>
            <SingleFilter filter={TechStackFilter}/>
            <SingleFilter filter={RoleFilter}/>
            <SingleFilter filter={MinSalaryFilter}/>

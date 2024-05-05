@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux'
 import './JobList.css';
 import { ClipLoader } from 'react-spinners';
+import Filters from '../Filters/Filters';
 
 const JobList = () => {
   const [jobs, setJobs] = useState([]);
@@ -55,7 +56,9 @@ const JobList = () => {
       SalaryFilter = SalaryFilter || (filterState.min_salary === null && filterState.max_salary === null);
       const companyFilter = filterState.company === null || job.companyName.toLowerCase().includes(filterState.company.toLowerCase());
 
-      return roleFilter && minExpFilter && maxExpFilter && locationFilter && SalaryFilter && companyFilter;
+      const workStyleFilter = filterState.workstyle === null || job.location === filterState.workstyle || job.location !== "remote" && filterState.workstyle === "onsite";
+
+      return roleFilter && minExpFilter && maxExpFilter && locationFilter && SalaryFilter && companyFilter && workStyleFilter;
     });
 
     setJobs(filteredJobs);
@@ -82,13 +85,13 @@ const JobList = () => {
 
   return (
     <div style={{position: 'relative'}}>
+      <Filters></Filters>
       <div className='job-list'>
       {jobs.length > 0 && jobs.map((job, index) => (
         <JobCard key={index} jobInfo={job} />
       ))}
       {jobs.length == 0 && <div>
-        <h1>No results found</h1>
-        
+        <h1>No results yet!</h1>
         </div>}
     </div>
     </div>
