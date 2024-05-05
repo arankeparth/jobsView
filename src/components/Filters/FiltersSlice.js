@@ -16,12 +16,13 @@ export const filterSlice = createSlice({
   },
   reducers: {
     setFilter: (state, action) => {
+      // Fetching the key and value from the individual filter and setting those values in the final filter
       state.value[action.payload['key']] = action.payload['value']
     },
   },
 })
 
-// Action creators are generated for each case reducer function
+
 export const {setFilter} = filterSlice.actions
 
 export default filterSlice.reducer
