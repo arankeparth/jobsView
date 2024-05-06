@@ -21,7 +21,6 @@ export const refreshListing = (fetchedJobs, setFetchedJobs, params) => {
 
             // Appending the fetched jobs to the existing list of jobs
             setFetchedJobs([...fetchedJobs, ...jdList]);
-            console.log(jdList[0])
         })
         .catch((error) => {
             console.error("Error:", error);
@@ -59,7 +58,7 @@ function getFilters(job, filterState) {
     const companyFilter = filterState.company === null || job.companyName.toLowerCase().includes(filterState.company.toLowerCase());
 
     const workStyleFilter = filterState.workstyle === null || job.location === filterState.workstyle || job.location !== "remote" && filterState.workstyle === "onsite";
-    console.log(roleFilter, minExpFilter, locationFilter, SalaryFilter, companyFilter, workStyleFilter)
+    //console.log(roleFilter, minExpFilter, locationFilter, SalaryFilter, companyFilter, workStyleFilter)
     return roleFilter && minExpFilter && locationFilter && SalaryFilter && companyFilter && workStyleFilter;
 }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import JobCard from '../JobCard/JobCard';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, CSSProperties } from 'react';
 import { useSelector } from 'react-redux'
 import './JobList.css';
 import { ClipLoader } from 'react-spinners';
@@ -11,7 +11,7 @@ import {refreshListing, filterJobs } from './Utils';
 const JobList = () => {
   const [jobs, setJobs] = useState([]); // Filtered jobs
   const [fetchedJobs, setFetchedJobs] = useState([]); // All jobs
-  const [params, setParams] = useState([24, 0]); // Limit and offset
+  const [params, setParams] = useState([6, 0]); // Limit and offset
   const filterState = useSelector((state) => state.filter.value) // Filter values
 
   useEffect(() => {
@@ -34,6 +34,12 @@ const JobList = () => {
     window.addEventListener('scroll', handleScroll);
   }, []);
 
+  const override = {
+    display: "block",
+    margin: "0 auto",
+    borderColor: "blue",
+  };
+
   return (
     <div style={{position: 'relative'}}>
       <Filters></Filters>
@@ -41,11 +47,17 @@ const JobList = () => {
       {jobs.length > 0 && jobs.map((job, index) => (
         <JobCard key={index} jobInfo={job} />
       ))}
-      {jobs.length == 0 && <div>
-        <h1>No results yet!</h1>
-        </div>}
     </div>
+        <ClipLoader
+        color='blue'
+        loading={true}
+        cssOverride={override}
+        size={90}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
     </div>
+    
   );
 };
 

@@ -1,15 +1,33 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { setFilter } from './FiltersSlice'
-import { displaySelected, toggleClass } from './Utils'
+import { Select, MenuItem, InputLabel, FormControl, Input, TextField } from '@mui/material';
+
 import './style.css';
 
 
 const SingleFilter = ({ filter }) => {
-    const [classState, setClassState] = React.useState('drop-down hidden')
     const [selected, setSelected] = React.useState([])
-    const [selectorClass, setSelectorClass] = React.useState('selector')
-    const [arrowClass, setArrowClass] = React.useState('arrow down')
+
+    const handleChange = (event) => {
+        const value = event.target.value;
+
+        let option;
+        if (filter.multiple === true) {
+            // If multiple is true, value will will be an array, else it will be a single value
+            option = typeof value === 'string' ? value.split(',') : value;
+        } else {
+            option = value
+        }
+
+        const data = {
+            'key': filter.key,
+            'value': option,
+        }
+        dispatch(setFilter(data))
+        console.log(option)
+        setSelected(option)
+    }
 
     const filterState = useSelector((state) => state.filter.value)
     const dispatch = useDispatch()
@@ -17,49 +35,38 @@ const SingleFilter = ({ filter }) => {
     return (
         <div className='filter'>
             {filter.textinput === true ? (
-                <input className={selectorClass} type="text" placeholder="Enter Company Name" onChange={(e) => {
+                // If the textinput is true, a textfield will be rendered
+                <TextField placeholder="Enter Company Name" onChange={(e) => {
                     dispatch(setFilter({ 'key': filter.key, 'value': e.target.value }))
-                }} />
+                }}></TextField>
+
             ) : (
-                <div>
-                    <div className={selectorClass}>
-                        <div className='selected'>{selected.length > 0 ? displaySelected(selected, setSelected, filter, dispatch, setFilter,) : filter.title}</div>
-                        <div className='arr-main' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'row', gap: '1rem' }} onClick={() => {toggleClass(setSelectorClass, setClassState, setArrowClass, classState)}} >
-                            <div className='dandi'></div>
-                            <div className='arr-box'><i style={{ color: 'gray', display: 'flex', justifyContent: 'center', alignItems: 'center' }} class={arrowClass}></i></div>
-                        </div>
-                    </div>
-                    <div className={classState}>
-                        {filter.options.map((option, index) => (
-                            <div className='option' onClick={() => {
-                                if (!selected.includes(option)) {
-                                    if (filter.multiple === true) {
-                                        const data = {
-                                            'key': filter.key,
-                                            'value': [...selected, option]
-                                        }
-                                        dispatch(setFilter(data))
-                                        setSelected([...selected, option])
-                                    } else {
-                                        setSelected([option])
-                                        console.log(option)
-                                        const data = {
-                                            'key': filter.key,
-                                            'value': option
-                                        }
-                                        dispatch(setFilter(data))
-                                        console.log(filterState.min_experience)
-                                    }
-                                }
-                                toggleClass(setSelectorClass, setClassState, setArrowClass, classState)
-                            }}>{option}</div>
-                        ))}
-                    </div>
-                    <div className='drop-down hidden no-pos'>
-                        {filter.options.map((option, index) => (
-                            <div className='option' >{option}</div>
-                        ))}
-                    </div>
+                <div className='filter'>
+                    <FormControl fullWidth style={{ position: 'relative', display: 'flex', flexDirection: 'row' }}>
+                        <InputLabel id="demo-simple-select-label">{filter.title}</InputLabel>
+                        <Select
+                            className='selector'
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            multiple={filter.multiple}
+                            label={filter.title}
+                            value={selected}
+                            onChange={handleChange}
+                        >
+                            {filter.options.map((option, index) => (
+                                <MenuItem value={option}>{option}</MenuItem>
+                            ))}
+                        </Select>
+                        <div className='main-cross' onClick={() => {
+                            if (filter.multiple === true) {
+                                setSelected([])
+                                dispatch(setFilter({ 'key': filter.key, 'value': [] }))
+                            } else {
+                                setSelected(null)
+                                dispatch(setFilter({ 'key': filter.key, 'value': null }))
+                            }
+                        }}>&times;</div>
+                    </FormControl>
                 </div>
             )}
 

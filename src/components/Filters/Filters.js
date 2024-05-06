@@ -12,7 +12,7 @@ const Filters = () => {
     }
     const MinExpFilter = {
         'key': 'min_experience', // This is the key that will be used in the state
-        'title': "Min-Experience",
+        'title': "Minimum Experience",
         'options': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
         'multiple': false
     
