@@ -61,8 +61,8 @@ const JobCard = ({ jobInfo }) => {
             </div>
             <button className='btn' id='apply'>Easy apply</button>
             <button className='btn' id='refer'>
-                <img class='thumb' src='p1.webp' />
-                <img class='thumb' src='p2.webp' />
+                <img class='thumb' src='p1.webp' alt='img'/>
+                <img class='thumb' src='p2.webp' alt='img'/>
                 Unlock referral asks</button>
         </div>
     );

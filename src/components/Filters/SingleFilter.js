@@ -1,7 +1,7 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { setFilter } from './FiltersSlice'
-import { Select, MenuItem, InputLabel, FormControl, Input, TextField } from '@mui/material';
+import { Select, MenuItem, InputLabel, FormControl, TextField } from '@mui/material';
 
 import './style.css';
 
@@ -29,7 +29,6 @@ const SingleFilter = ({ filter }) => {
         setSelected(option)
     }
 
-    const filterState = useSelector((state) => state.filter.value)
     const dispatch = useDispatch()
 
     return (

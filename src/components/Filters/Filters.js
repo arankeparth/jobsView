@@ -18,15 +18,7 @@ const Filters = () => {
     
     }
 
-    const MaxExpFilter = {
-        'key': 'max_experience', // This is the key that will be used in the state
-        'title': "Max-Experience",
-        'options': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-        'multiple': false
-    
-    }
-
-    const LocFilter = {
+     const LocFilter = {
         'key': 'location', // This is the key that will be used in the state
         'title': "Location",
         'options': ['delhi ncr', 'banglore', 'mumbai', 'chennai'],

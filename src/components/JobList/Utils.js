@@ -52,12 +52,12 @@ function getFilters(job, filterState) {
         SalaryFilter = filterState.min_salary <= job.minJdSalary || filterState.min_salary === null;
     
     // If the user has not set any salary filter, the filter is considered as true
-    SalaryFilter = SalaryFilter || (filterState.min_salary === null && filterState.max_salary === null);
+    SalaryFilter = SalaryFilter || ((filterState.min_salary === null && filterState.max_salary === null));
     
     // Checking if the company name contains the filter string 
     const companyFilter = filterState.company === null || job.companyName.toLowerCase().includes(filterState.company.toLowerCase());
 
-    const workStyleFilter = filterState.workstyle === null || job.location === filterState.workstyle || job.location !== "remote" && filterState.workstyle === "onsite";
+    const workStyleFilter = filterState.workstyle === null || job.location === filterState.workstyle || (job.location !== "remote" && filterState.workstyle === "onsite");
     //console.log(roleFilter, minExpFilter, locationFilter, SalaryFilter, companyFilter, workStyleFilter)
     return roleFilter && minExpFilter && locationFilter && SalaryFilter && companyFilter && workStyleFilter;
 }

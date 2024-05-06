@@ -1,6 +1,6 @@
 import React from 'react';
 import JobCard from '../JobCard/JobCard';
-import { useState, useEffect, CSSProperties } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux'
 import './JobList.css';
 import { ClipLoader } from 'react-spinners';
